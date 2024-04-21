@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Noto+Serif+TC&display=swap');
+
 
 .article-header{
     position: relative;
@@ -39,6 +42,19 @@
 
 }
 
+.split-text{
+    letter-spacing: -30px;
+    animation: split-out linear;
+    animation-timeline:  view();
+}
+
+.glow-card{
+    background: #f2f2f2;
+    box-shadow: 15px 15px 30px #e5e5e5,
+               -15px -15px 30px #ffffff;
+}
+
+
 @keyframes fade-out{
     to { opacity: 0}
 }
@@ -47,3 +63,19 @@
     25% { opacity: 1;}
     85%, 100% { opacity: 0; scale: 3}
 }
+
+
+@keyframes split-out{
+    0%{
+      letter-spacing: -30px;
+      opacity: 0;
+    }
+    30%{
+      letter-spacing: 8px;
+      opacity: 1;
+    }
+    100%{
+      letter-spacing: 8px;
+      opacity: 1;
+    }
+  }

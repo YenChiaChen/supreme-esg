@@ -5,6 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ['"Noto Sans TC"', 'sans-serif'],
+      serif: ['"Noto Serif TC"', 'serif']
+    }
   },
   plugins: [],
 }
