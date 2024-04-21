@@ -44,7 +44,8 @@
 
 .split-text{
     letter-spacing: -30px;
-    animation: split-out linear;
+    animation-name: split-out;
+    animation-timing-function: linear;
     animation-timeline:  view();
 }
 
@@ -53,6 +54,7 @@
     box-shadow: 15px 15px 30px #e5e5e5,
                -15px -15px 30px #ffffff;
 }
+
 
 
 @keyframes fade-out{
@@ -70,7 +72,7 @@
       letter-spacing: -30px;
       opacity: 0;
     }
-    30%{
+    60%{
       letter-spacing: 8px;
       opacity: 1;
     }
@@ -79,3 +81,4 @@
       opacity: 1;
     }
   }
+
