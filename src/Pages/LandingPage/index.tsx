@@ -5,8 +5,17 @@ import img_bush from "../../assets/img/bush.png";
 import img_card01 from "../../assets/img/cards/1.png";
 import img_card02 from "../../assets/img/cards/2.png";
 import img_card03 from "../../assets/img/cards/3.png";
+import img_goal01 from "../../assets/img/goals/4.png";
+import img_goal02 from "../../assets/img/goals/5.png";
+import img_goal03 from "../../assets/img/goals/6.png";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+
+type BackgroundImages = {
+  div1: string;
+  div2: string;
+  div3: string;
+};
 
 export default function LandingPage() {
   const ref = useRef(null);
@@ -23,6 +32,46 @@ export default function LandingPage() {
   const treespring = useSpring(treeY, physics);
   const bushSpring = useSpring(bushY, physics);
 
+
+  const [visibleDiv, setVisibleDiv] = useState<string | null>(null);
+  const div1Ref = useRef<HTMLDivElement>(null);
+  const div2Ref = useRef<HTMLDivElement>(null);
+  const div3Ref = useRef<HTMLDivElement>(null);
+
+  const backgroundImages: BackgroundImages = {
+    div1: img_goal01,
+    div2: img_goal02,
+    div3: img_goal03
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setVisibleDiv(entry.target.id);
+            console.log(visibleDiv)
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      }
+    );
+
+    if (div1Ref.current) observer.observe(div1Ref.current);
+    if (div2Ref.current) observer.observe(div2Ref.current);
+    if (div3Ref.current) observer.observe(div3Ref.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+
+
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -31,6 +80,14 @@ export default function LandingPage() {
     });
     return () => unsubscribe();
   }, [scrollYProgress]);
+
+  const getBackgroundImage = (key: string | null): string => {
+    if (key && key in backgroundImages) {
+      return backgroundImages[key as keyof BackgroundImages];
+    }
+    return backgroundImages.div1; // Default background
+  };
+
 
   return (
     <div ref={ref}>
@@ -215,16 +272,16 @@ export default function LandingPage() {
 
       <div className="container mx-auto mt-[10vh]">
         <div className="grid grid-cols-3 items-center mt-16">
-          <div className='h-[2px] w-full bg-[#FFC759]'></div>
+          <div className="h-[2px] w-full bg-[#FFC759]"></div>
           <p className="text-center  text-[36px]  text-[#555555] split-text font-serif">
             相信深耕 共展未來
-          </p> 
-          <div className='h-[2px] w-full bg-[#FFC759]'></div>
+          </p>
+          <div className="h-[2px] w-full bg-[#FFC759]"></div>
         </div>
         <div className="grid grid-cols-3 gap-8 mt-12">
           <div className="relative group">
             <div
-              className=" rounded-[30px]  py-8 px-8 h-[100%] glow-card relative overflow-hidden min-h-[240px] duration-300 hover:shadow-xl hover:scale-[1.04] z-20"
+              className=" rounded-[30px]  py-8 px-8 h-[100%] glow-card relative overflow-hidden min-h-[240px] duration-300 hover:shadow-xl hover:scale-[1.04] z-30"
               style={{
                 backgroundImage: `url(${img_card01})`,
                 backgroundSize: "cover",
@@ -236,7 +293,7 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="absolute shadow-xl w-full left-0 group-hover:pb-12 top-0 duration-300 group-hover:translate-y-[80%] pt-[20%] rounded-b-[30px] px-8 z-10 bg-white">
+            <div className="absolute shadow-xl w-full left-0 group-hover:pb-12 top-0 opacity-0 group-hover:opacity-100 duration-300 group-hover:translate-y-[75%] pt-[20%] rounded-b-[30px] px-8 z-20 bg-white">
               <p className="text-center w-full text-[24px] font-bold text-[#555555] font-serif tracking-[2px]">
                 <span className="text-[#FF8D50]">《 </span>關心在地{" "}
                 <span className="text-[#FF8D50]">》</span>
@@ -248,7 +305,7 @@ export default function LandingPage() {
           </div>
           <div className="relative group">
             <div
-              className=" rounded-[30px]  py-8 px-8 h-[100%] glow-card relative overflow-hidden min-h-[240px] duration-300 hover:shadow-xl hover:scale-[1.04] z-20"
+              className=" rounded-[30px]  py-8 px-8 h-[100%] glow-card relative overflow-hidden min-h-[240px] duration-300 hover:shadow-xl hover:scale-[1.04] z-30"
               style={{
                 backgroundImage: `url(${img_card02})`,
                 backgroundSize: "cover",
@@ -260,7 +317,7 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="absolute shadow-xl w-full left-0 top-0 group-hover:pb-12  duration-300 group-hover:translate-y-[80%] pt-[15%] rounded-b-[30px] px-8 z-10 bg-white">
+            <div className="absolute shadow-xl w-full left-0 top-0 group-hover:pb-12 opacity-0 group-hover:opacity-100  duration-300 group-hover:translate-y-[65%] pt-[15%] rounded-b-[30px] px-8 z-20 bg-white">
               <p className="text-center w-full text-[24px] font-bold text-[#555555] font-serif  tracking-[2px]">
                 <span className="text-[#FF8D50]">《 </span>關懷培力{" "}
                 <span className="text-[#FF8D50]">》</span>
@@ -272,7 +329,7 @@ export default function LandingPage() {
           </div>
           <div className="relative group ">
             <div
-              className=" rounded-[30px]  py-8 px-8 h-[100%] glow-card relative overflow-hidden min-h-[240px] duration-300 hover:shadow-xl hover:scale-[1.04] z-20"
+              className=" rounded-[30px]  py-8 px-8 h-[100%] glow-card relative overflow-hidden min-h-[240px] duration-300 hover:shadow-xl hover:scale-[1.04] z-30"
               style={{
                 backgroundImage: `url(${img_card03})`,
                 backgroundSize: "cover",
@@ -284,7 +341,7 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="absolute shadow-xl w-full left-0 top-0  duration-300 group-hover:translate-y-[80%] group-hover:pb-12 pt-[15%] rounded-b-[30px] px-8 z-10 bg-white">
+            <div className="absolute shadow-xl w-full left-0 top-0  duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-[65%] group-hover:pb-12 pt-[15%] rounded-b-[30px] px-8 z-20 bg-white">
               <p className="text-center w-full text-[24px] font-bold text-[#555555] font-serif tracking-[2px]">
                 <span className="text-[#FF8D50]">《 </span>關注根基{" "}
                 <span className="text-[#FF8D50]">》</span>
@@ -297,10 +354,52 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
+      <div className="relative">
+        <div className="bg-gradient-to-r from-[#19734E] to-[#3C9180] mt-36 w-full sticky top-0 h-[100vh] relative z-0"
+         style={{
+          backgroundImage: `url(${getBackgroundImage(visibleDiv)})`,
+          backgroundSize: "cover",
+        }}>
+          <div className="absolute w-full left-0 top-0 h-full bg-black/50"></div>
+            <p className="text-[110px] pt-16 font-semibold text-white absolute left-0 bottom-0 opacity-70 tracking-[14px]">永續成果</p>
+        </div>
+        <div className="-mt-[100vh] relative z-10 grid grid-cols-2 w-full pt-24 container mx-auto">
+          <div>&nbsp;</div>
+          <div ref={div1Ref} id='div1' className="grid grid-cols-2 gap-8 ">
+            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
+                  連五年舉辦淨灘、淨山活動，撿拾清除廢物共計：
+                  <p className="text-[40px] font-bold text-center mt-6">420公斤</p>
+            </div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
 
-      <div className='bg-gradient-to-r from-[#19734E] to-[#3C9180] mt-[300px]'>
-        <div className="container mx-auto text-white">
-          <p className="text-[52px] pt-16 font-semibold">永續成果</p>
+            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
+            定期記錄內部廢棄物數量與清運數據，並委託合格之廢棄物回收廠商進行處置，2022年廢棄物處理回收量達：
+                  <p className="text-[40px] font-bold text-center mt-6">76.88%</p>
+            </div>
+            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
+            2022年減少用紙量約 278,055 張 A4 紙，約減少砍伐 33.37 棵樹，較前一年成長：
+                  <p className="text-[40px] font-bold text-center mt-6">9.32%</p>
+            </div>
+          </div>
+          <div>&nbsp;</div>
+
+          <div ref={div2Ref} id='div2' className="grid grid-cols-2 gap-8 mt-[200px]">
+            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
+            女性和男性員工人數的比例約為 0.47：1.00，主管職由女性擔任之比例為：
+                  <p className="text-[40px] font-bold text-center mt-6">18.18%</p>
+            </div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+
+            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
+            提供員工運動型社團活動、防疫相關物資、健康檢查、健康講座、健康諮詢等，供員工利用。
+            </div>
+            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
+            秉持「攜手學習，共同成長」的人才培育理念，提供多元化的內部培訓課程，積極鼓勵員工參加外部專業課程和研討會等進修，幫助員工增加知識和技能。 2022 年度各層級員工受訓時數共計：
+                  <p className="text-[40px] font-bold text-center mt-6 leading-[50px]">1,583 小時</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
