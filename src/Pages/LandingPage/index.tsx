@@ -10,6 +10,8 @@ import img_goal02 from "../../assets/img/goals/5.png";
 import img_goal03 from "../../assets/img/goals/6.png";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type BackgroundImages = {
   div1: string;
@@ -40,8 +42,8 @@ export default function LandingPage() {
 
   const backgroundImages: BackgroundImages = {
     div1: img_goal01,
-    div2: img_goal02,
-    div3: img_goal03
+    div2: img_goal03,
+    div3: img_goal02
   };
 
   useEffect(() => {
@@ -57,7 +59,7 @@ export default function LandingPage() {
       {
         root: null,
         rootMargin: '0px',
-        threshold: 0.1
+        threshold: 0
       }
     );
 
@@ -246,8 +248,8 @@ export default function LandingPage() {
         <div className="flex flex-col justify-center h-[100%]  container  mx-auto  text-white z-10 relative">
           <h1 className="text-[64px] font-semibold ">永續至上</h1>
           <p className="text-[20px] mt-4 font-light tracking-[2px]">
-            致力環境保護發展，守護每位員工權益， <br />
-            承諾給予社會正面價值。
+          <FontAwesomeIcon icon={faQuoteLeft} className="mr-2 text-[#FF8D50]" /> 致力環境保護發展，守護每位員工權益， <br />
+            承諾給予社會正面價值。 <FontAwesomeIcon icon={faQuoteRight} className="ml-2 text-[#FF8D50]"  />
           </p>
         </div>
         <motion.img
@@ -355,17 +357,17 @@ export default function LandingPage() {
         </div>
       </div>
       <div className="relative">
-        <div className="bg-gradient-to-r from-[#19734E] to-[#3C9180] mt-36 w-full sticky top-0 h-[100vh] relative z-0"
+        <div className="image-container bg-gradient-to-r from-[#19734E] to-[#3C9180] mt-36 w-full sticky top-0 h-[100vh] relative z-0"
          style={{
           backgroundImage: `url(${getBackgroundImage(visibleDiv)})`,
           backgroundSize: "cover",
         }}>
           <div className="absolute w-full left-0 top-0 h-full bg-black/50"></div>
-            <p className="text-[110px] pt-16 font-semibold text-white absolute left-0 bottom-0 opacity-70 tracking-[14px]">永續成果</p>
+            <p className="text-[110px] pt-16 font-semibold text-white absolute left-0 bottom-0 opacity-70 tracking-[14px]"></p>
         </div>
-        <div className="-mt-[100vh] relative z-10 grid grid-cols-2 w-full pt-24 container mx-auto">
+        <div className="-mt-[100vh] relative z-10 grid grid-cols-2 w-full pt-24 container mx-auto snap-y">
           <div>&nbsp;</div>
-          <div ref={div1Ref} id='div1' className="grid grid-cols-2 gap-8 ">
+          <div ref={div1Ref} id='div1' className="grid grid-cols-2 gap-8 snap-start">
             <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
                   連五年舉辦淨灘、淨山活動，撿拾清除廢物共計：
                   <p className="text-[40px] font-bold text-center mt-6">420公斤</p>
@@ -384,7 +386,7 @@ export default function LandingPage() {
           </div>
           <div>&nbsp;</div>
 
-          <div ref={div2Ref} id='div2' className="grid grid-cols-2 gap-8 mt-[200px]">
+          <div ref={div2Ref} id='div2' className="grid grid-cols-2 gap-8 mt-[200px] snap-start">
             <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
             女性和男性員工人數的比例約為 0.47：1.00，主管職由女性擔任之比例為：
                   <p className="text-[40px] font-bold text-center mt-6">18.18%</p>
@@ -400,7 +402,31 @@ export default function LandingPage() {
                   <p className="text-[40px] font-bold text-center mt-6 leading-[50px]">1,583 小時</p>
             </div>
           </div>
+          
+          <div>&nbsp;</div>
+          <div ref={div3Ref} id='div3' className="grid grid-cols-2 gap-8 mt-[200px] snap-start pb-36">
+            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
+            2023年捐款贊助總金額達：
+                  <p className="text-[40px] font-bold text-center mt-6 leading-[50px]">3,636,000元</p>
+            </div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+
+            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
+            公益服務績效達：
+                  <p className="text-[40px] font-bold text-center mt-6">76人</p>
+            </div>
+            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
+           全員響應「發揮愛心，動手捐發票」活動， 共計募集兩千多張發票，全數贈予財團法人創世福利基金會、財團法人中華民國兒童癌症基金會。
+            </div>
+          </div>
+
+          
         </div>
+      </div>
+
+      <div className="bg-blue-200 h-[300px]">
+        <p>熱血至上 公益你我</p>
       </div>
     </div>
   );
