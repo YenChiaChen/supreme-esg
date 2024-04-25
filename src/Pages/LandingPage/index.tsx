@@ -12,6 +12,7 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Stat } from "./State";
 
 type BackgroundImages = {
   div1: string;
@@ -34,7 +35,6 @@ export default function LandingPage() {
   const treespring = useSpring(treeY, physics);
   const bushSpring = useSpring(bushY, physics);
 
-
   const [visibleDiv, setVisibleDiv] = useState<string | null>(null);
   const div1Ref = useRef<HTMLDivElement>(null);
   const div2Ref = useRef<HTMLDivElement>(null);
@@ -43,23 +43,23 @@ export default function LandingPage() {
   const backgroundImages: BackgroundImages = {
     div1: img_goal01,
     div2: img_goal03,
-    div3: img_goal02
+    div3: img_goal02,
   };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setVisibleDiv(entry.target.id);
-            console.log(visibleDiv)
+            console.log(visibleDiv);
           }
         });
       },
       {
         root: null,
-        rootMargin: '0px',
-        threshold: 0
+        rootMargin: "0px",
+        threshold: 0,
       }
     );
 
@@ -71,8 +71,6 @@ export default function LandingPage() {
       observer.disconnect();
     };
   }, []);
-
-
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -89,7 +87,6 @@ export default function LandingPage() {
     }
     return backgroundImages.div1; // Default background
   };
-
 
   return (
     <div ref={ref}>
@@ -248,8 +245,16 @@ export default function LandingPage() {
         <div className="flex flex-col justify-center h-[100%]  container  mx-auto  text-white z-10 relative">
           <h1 className="text-[64px] font-semibold ">永續至上</h1>
           <p className="text-[20px] mt-4 font-light tracking-[2px]">
-          <FontAwesomeIcon icon={faQuoteLeft} className="mr-2 text-[#FF8D50]" /> 致力環境保護發展，守護每位員工權益， <br />
-            承諾給予社會正面價值。 <FontAwesomeIcon icon={faQuoteRight} className="ml-2 text-[#FF8D50]"  />
+            <FontAwesomeIcon
+              icon={faQuoteLeft}
+              className="mr-2 text-[#FF8D50]"
+            />{" "}
+            致力環境保護發展，守護每位員工權益， <br />
+            承諾給予社會正面價值。{" "}
+            <FontAwesomeIcon
+              icon={faQuoteRight}
+              className="ml-2 text-[#FF8D50]"
+            />
           </p>
         </div>
         <motion.img
@@ -357,71 +362,99 @@ export default function LandingPage() {
         </div>
       </div>
       <div className="relative">
-        <div className="image-container bg-gradient-to-r from-[#19734E] to-[#3C9180] mt-36 w-full sticky top-0 h-[100vh] relative z-0"
-         style={{
-          backgroundImage: `url(${getBackgroundImage(visibleDiv)})`,
-          backgroundSize: "cover",
-        }}>
+        <div
+          className="image-container bg-gradient-to-r from-[#19734E] to-[#3C9180] mt-36 w-full sticky top-0 h-[100vh] relative z-0"
+          style={{
+            backgroundImage: `url(${getBackgroundImage(visibleDiv)})`,
+            backgroundSize: "cover",
+          }}
+        >
           <div className="absolute w-full left-0 top-0 h-full bg-black/50"></div>
-            <p className="text-[110px] pt-16 font-semibold text-white absolute left-0 bottom-0 opacity-70 tracking-[14px]"></p>
+          <p className="text-[110px] pt-16 font-semibold text-white absolute left-0 bottom-0 opacity-70 tracking-[14px]"></p>
         </div>
         <div className="-mt-[100vh] relative z-10 grid grid-cols-2 w-full pt-24 container mx-auto snap-y">
           <div>&nbsp;</div>
-          <div ref={div1Ref} id='div1' className="grid grid-cols-2 gap-8 snap-start">
-            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
-                  連五年舉辦淨灘、淨山活動，撿拾清除廢物共計：
-                  <p className="text-[40px] font-bold text-center mt-6">420公斤</p>
+          <div
+            ref={div1Ref}
+            id="div1"
+            className="grid grid-cols-2 gap-8 snap-start"
+          >
+            <div className="border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]">
+              連五年舉辦淨灘、淨山活動，撿拾清除廢物共計：
+              <p className="text-[40px] font-bold text-center mt-6">
+                <Stat num={420} suffix="公斤" subheading="" />
+              </p>
             </div>
             <div>&nbsp;</div>
             <div>&nbsp;</div>
 
-            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
-            定期記錄內部廢棄物數量與清運數據，並委託合格之廢棄物回收廠商進行處置，2022年廢棄物處理回收量達：
-                  <p className="text-[40px] font-bold text-center mt-6">76.88%</p>
+            <div className="border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]">
+              定期記錄內部廢棄物數量與清運數據，並委託合格之廢棄物回收廠商進行處置，2022年廢棄物處理回收量達：
+              <p className="text-[40px] font-bold text-center mt-6">
+                <Stat num={76.88} suffix="%" subheading="" /></p>
             </div>
-            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
-            2022年減少用紙量約 278,055 張 A4 紙，約減少砍伐 33.37 棵樹，較前一年成長：
-                  <p className="text-[40px] font-bold text-center mt-6">9.32%</p>
+            <div className="border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]">
+              2022年減少用紙量約 278,055 張 A4 紙，約減少砍伐 33.37
+              棵樹，較前一年成長：
+              <p className="text-[40px] font-bold text-center mt-6">
+                <Stat num={9.32} suffix="%" subheading="" /></p>
             </div>
           </div>
           <div>&nbsp;</div>
 
-          <div ref={div2Ref} id='div2' className="grid grid-cols-2 gap-8 mt-[200px] snap-start">
-            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
-            女性和男性員工人數的比例約為 0.47：1.00，主管職由女性擔任之比例為：
-                  <p className="text-[40px] font-bold text-center mt-6">18.18%</p>
+          <div
+            ref={div2Ref}
+            id="div2"
+            className="grid grid-cols-2 gap-8 mt-[200px] snap-start"
+          >
+            <div className="border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]">
+              女性和男性員工人數的比例約為
+              0.47：1.00，主管職由女性擔任之比例為：
+              <p className="text-[40px] font-bold text-center mt-6">
+                <Stat num={18.18} suffix="%" subheading="" /></p>
             </div>
             <div>&nbsp;</div>
             <div>&nbsp;</div>
 
-            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
-            提供員工運動型社團活動、防疫相關物資、健康檢查、健康講座、健康諮詢等，供員工利用。
+            <div className="border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]">
+              提供員工運動型社團活動、防疫相關物資、健康檢查、健康講座、健康諮詢等，供員工利用。
             </div>
-            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
-            秉持「攜手學習，共同成長」的人才培育理念，提供多元化的內部培訓課程，積極鼓勵員工參加外部專業課程和研討會等進修，幫助員工增加知識和技能。 2022 年度各層級員工受訓時數共計：
-                  <p className="text-[40px] font-bold text-center mt-6 leading-[50px]">1,583 小時</p>
+            <div className="border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]">
+              秉持「攜手學習，共同成長」的人才培育理念，提供多元化的內部培訓課程，積極鼓勵員工參加外部專業課程和研討會等進修，幫助員工增加知識和技能。
+              2022 年度各層級員工受訓時數共計：
+              <p className="text-[40px] font-bold text-center mt-6 leading-[50px]">
+                
+              <Stat num={1583} suffix="小時" subheading="" />
+              </p>
             </div>
           </div>
-          
+
           <div>&nbsp;</div>
-          <div ref={div3Ref} id='div3' className="grid grid-cols-2 gap-8 mt-[200px] snap-start pb-36">
-            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
-            2023年捐款贊助總金額達：
-                  <p className="text-[40px] font-bold text-center mt-6 leading-[50px]">3,636,000元</p>
+          <div
+            ref={div3Ref}
+            id="div3"
+            className="grid grid-cols-2 gap-8 mt-[200px] snap-start pb-36"
+          >
+            <div className="border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]">
+              2023年捐款贊助總金額達：
+              <p className="text-[40px] font-bold text-center mt-6 leading-[50px]">
+               
+              <Stat num={3636000} suffix="元" subheading="" />
+              </p>
             </div>
             <div>&nbsp;</div>
             <div>&nbsp;</div>
 
-            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
-            公益服務績效達：
-                  <p className="text-[40px] font-bold text-center mt-6">76人</p>
+            <div className="border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]">
+              公益服務績效達：
+              <p className="text-[40px] font-bold text-center mt-6">
+                <Stat num={76} suffix="人" subheading="" /></p>
             </div>
-            <div className='border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]'>
-           全員響應「發揮愛心，動手捐發票」活動， 共計募集兩千多張發票，全數贈予財團法人創世福利基金會、財團法人中華民國兒童癌症基金會。
+            <div className="border-[1px] border-white h-fit rounded-xl backdrop-blur text-white px-8 py-8 font-light tracking-[2px] leading-[28px]">
+              全員響應「發揮愛心，動手捐發票」活動，
+              共計募集兩千多張發票，全數贈予財團法人創世福利基金會、財團法人中華民國兒童癌症基金會。
             </div>
           </div>
-
-          
         </div>
       </div>
 
