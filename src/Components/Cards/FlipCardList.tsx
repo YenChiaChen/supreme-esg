@@ -11,7 +11,7 @@ export default function FlipCardList() {
   const iconElement1 = <FontAwesomeIcon icon={faGlobe} />;
   const iconElement3 = <FontAwesomeIcon icon={faGear} />;
   return (
-    <div className="grid grid-cols-3 gap-16 mt-12">
+    <div className="grid grid-cols-3 gap-16 mt-12 w-[70%] mx-auto min-w-[1000px]">
       <FlipCard
         backgroundImage={img_card01}
         title="在地"

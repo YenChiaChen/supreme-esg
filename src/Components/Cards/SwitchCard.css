@@ -2,9 +2,10 @@
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: end;
   position: sticky;
   top: 0px;
+  
 }
 .cardContainer .card {
   display: flex;
@@ -12,7 +13,7 @@
   position: relative;
   width: 100%;
   border-radius: 25px;
-  padding: 50px;
+  padding: 30px;
   transform-origin: top;
 }
 .cardContainer .card h2 {

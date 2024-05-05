@@ -1,4 +1,4 @@
-import img_bg from "../../assets/img/bg3.png";
+import img_bg from "../../assets/img/bg_paper.png";
 import NavBar from "../../Components/Nav/NavBar";
 import FlipCardList from "../../Components/Cards/FlipCardList";
 import { CSSProperties } from "react";
@@ -18,13 +18,15 @@ export default function LandingPage() {
       <NavBar />
       <div className="h-[100svh]" style={heroStyle}>
         <div className="flex flex-col justify-end pb-[18rem] text-white h-full container mx-auto">
-          <h1 className="text-6xl font-bold tracking-[8px]">永續至上</h1>
-          <p className="text-xl font-light mt-8">
+          <h1 className="text-6xl font-bold tracking-[8px] opacity-80">
+            永續至上
+          </h1>
+          <p className="text-xl font-light mt-8 opacity-80">
             致力環境保護發展，守護每位員工權益， 承諾給予社會正面價值。
           </p>
         </div>
       </div>
-      <div className="bg-[#efefef] -mt-[10rem] rounded-t-[5rem]">
+      <div className="bg-white -mt-[10rem] rounded-t-[5rem]">
         <div className="h-[50px] w-full bg-[#FF8D50] rounded-full container mx-auto -translate-y-1/2 flex items-center px-8 text-white">
           最新消息
         </div>
@@ -37,11 +39,11 @@ export default function LandingPage() {
             致力實現經濟、社會和環境之間的平衡，承諾在創造價值的同時兼顧永續發展，為員工、合作夥伴、社區帶來正面的影響。
           </p>
           <FlipCardList />
-
-          <p className="text-center font-semibold  text-5xl  text-[#555555] tracking-[6px] mt-36 ">
-            永續成果
-          </p>
+        </div>
+        <div className="bg-[#ED6B2C]">
+          <div className="container mx-auto">
           <SwitchCardList />
+          </div>
         </div>
         <div className="h-[2000px]"></div>
       </div>

@@ -12,7 +12,11 @@ export default function SwitchCardList() {
   })
 
   return (
-    <main ref={container} >
+    <main ref={container} className='relative' >
+      
+      <p className=" font-semibold  text-5xl  text-[#555555] tracking-[6px] mt-36 sticky top-[15%] text-center text-white">
+            永續成果
+          </p>
       {
         projects.map( (project, i) => {
           const targetScale = 1 - ( (projects.length - i) * 0.05);
