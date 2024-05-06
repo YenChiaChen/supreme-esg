@@ -8,7 +8,7 @@ interface AnimateComponentProps {
   duration?: number;
   delay?: number;
   animationType?: keyof typeof variants;
-  transformOrigin?: string; // 新增這行
+  transformOrigin?: string;
 }
 
 const AnimateComponent: React.FC<AnimateComponentProps> = ({
@@ -16,11 +16,11 @@ const AnimateComponent: React.FC<AnimateComponentProps> = ({
   duration = 0.5,
   delay = 0,
   animationType = "slideUp",
-  transformOrigin = "50% 50%", // 預設為中心點
+  transformOrigin = "50% 50%",
 }) => {
   const { ref, inView } = useInView({
-    triggerOnce: true, // 確保動畫只觸發一次
-    threshold: 0.5, // 元素至少有50%進入視野時觸發
+    triggerOnce: true, 
+    threshold: 0.5,
   });
   return (
     <motion.div
@@ -30,7 +30,7 @@ const AnimateComponent: React.FC<AnimateComponentProps> = ({
       exit="hidden"
       transition={{ duration, delay }}
       variants={variants[animationType]}
-      style={{ transformOrigin }} // 應用 transformOrigin 樣式
+      style={{ transformOrigin }}
     >
       {children}
     </motion.div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useViewportScroll, useTransform } from 'framer-motion';
+import { motion, useTransform, useScroll } from 'framer-motion';
 
 interface ParallaxComponentProps {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ interface ParallaxComponentProps {
 }
 
 const ParallaxComponent: React.FC<ParallaxComponentProps> = ({ children, offset, min, max }) => {
-  const { scrollYProgress } = useViewportScroll();
+  const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], [min, max]);
 
   return (

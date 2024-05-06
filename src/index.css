@@ -4,10 +4,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Noto+Serif+TC&display=swap');
 
-body{
-  background-color: #E9ECEF;
-}
-
 .article-header{
     position: relative;
     overflow-x: clip;
@@ -88,4 +84,18 @@ body{
 
   .image-container {
     transition: background-image 0.5s ease-in-out;
+  }
+
+
+  .highlight span {
+    background-image: linear-gradient(to right, rgba(255,141,255,0) 50%, #ffd2ba 50%);
+    background-position: -0% 0;
+    background-size: 200% auto;
+    transition: background-position 0.5s ease-out;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .highlight:hover span {
+    background-position: -99.99% 0;
+    font-weight: bold;
   }

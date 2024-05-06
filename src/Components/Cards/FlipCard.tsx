@@ -37,9 +37,9 @@ const FlipCard: React.FC<CardProps> = ({
           </p>
         </div>
         <div className="flip-card-back flex flex-col justify-end p-8 text-left bg-[#efefef] glow-card ">
-          <div className="text-[#5555555] z-20 mb-4 text-6xl">{iconComponent}</div>
+          <div className="text-[#262626] z-20 mb-4 text-6xl">{iconComponent}</div>
           <Arrow className=" mb-8" />
-          <p className="text-md font-light text-[#555555]">{content}</p>
+          <p className="text-[14px] font-light text-[#262626]">{content}</p>
         </div>
       </div>
     </div>

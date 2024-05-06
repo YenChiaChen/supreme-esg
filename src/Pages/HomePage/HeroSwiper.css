@@ -1,0 +1,14 @@
+.HeroSwiper  .swiper-pagination .swiper-pagination-bullet {
+    width: 15px;
+    height: 15px;
+    margin-left: 18px;
+    margin-right: 18px;
+}
+
+.HeroSwiper  .swiper-pagination .swiper-pagination-bullet-active{
+    background-color: white;
+}
+
+.HeroSwiper  .swiper-pagination{
+    padding-bottom: 3rem;
+}
