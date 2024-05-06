@@ -24,7 +24,7 @@ const FlipCard: React.FC<CardProps> = ({
   };
 
   return (
-    <div className="flip-card">
+    <div className="flip-card hover:scale-[1.1] duration-300">
       <div className="flip-card-inner">
         <div
           className="flip-card-front flex flex-col justify-center overflow-hidden bg-cover bg-center"
@@ -36,7 +36,7 @@ const FlipCard: React.FC<CardProps> = ({
             {subtitle}
           </p>
         </div>
-        <div className="flip-card-back flex flex-col justify-end p-8 text-left bg-[#efefef] glow-card">
+        <div className="flip-card-back flex flex-col justify-end p-8 text-left bg-[#efefef] glow-card ">
           <div className="text-[#5555555] z-20 mb-4 text-6xl">{iconComponent}</div>
           <Arrow className=" mb-8" />
           <p className="text-md font-light text-[#555555]">{content}</p>

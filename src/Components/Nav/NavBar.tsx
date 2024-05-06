@@ -11,7 +11,7 @@ const NavBar: React.FC = () => {
     <div className="container left-1/2 -translate-x-1/2 fixed top-[1rem] bg-white rounded-full z-40 shadow-xl">
       <div className="flex justify-between w-full py-4 px-8 items-center">
         <div className="flex-1 flex items-center whitespace-nowrap">
-          <Logo /><span className="ml-3 font-light tracking-widest"> | 企業永續</span>
+          <Logo className='w-[200px] h-[40px]' /><span className="ml-3 font-light tracking-widest text-[16px]"> | 企業永續</span>
         </div>
         <NavLinks names={links} />
         <div className="flex-1 text-right font-light flex whitespace-nowrap gap-8 justify-end text-sm text-[#555555] items-center">

@@ -5,6 +5,7 @@ import img_card02 from "../../assets/img/cards/2.png";
 import img_card03 from "../../assets/img/cards/3.png";
 import FlipCard from "./FlipCard";
 import { faGlobe, faGear } from "@fortawesome/free-solid-svg-icons";
+import AnimateComponent from "../Animations/animation";
 
 export default function FlipCardList() {
   const iconElement2 = <FontAwesomeIcon icon={faHandshake} />;
@@ -12,13 +13,16 @@ export default function FlipCardList() {
   const iconElement3 = <FontAwesomeIcon icon={faGear} />;
   return (
     <div className="grid grid-cols-3 gap-16 mt-12 w-[70%] mx-auto min-w-[1000px]">
-      <FlipCard
-        backgroundImage={img_card01}
-        title="在地"
-        subtitle="關心在地"
-        content="致力環境保護，承諾將積極減少溫室氣體排放、推動資源循環利用、減少廢棄物的產生，力求企業的永續發展及為環境保護盡一份力。"
-        iconComponent={iconElement1}
-      />
+      
+      <AnimateComponent animationType="zoomIn" duration={0.5} delay={0.1} transformOrigin="0% 0%">
+        <FlipCard
+          backgroundImage={img_card01}
+          title="在地"
+          subtitle="關心在地"
+          content="致力環境保護，承諾將積極減少溫室氣體排放、推動資源循環利用、減少廢棄物的產生，力求企業的永續發展及為環境保護盡一份力。"
+          iconComponent={iconElement1}
+        />
+        </AnimateComponent>
       <FlipCard
         backgroundImage={img_card02}
         title=" 培力"
