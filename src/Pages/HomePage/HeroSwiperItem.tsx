@@ -1,4 +1,6 @@
 import { CSSProperties } from "react";
+import AnimateComponent from "../../Components/Animations/animation";
+import ParallaxComponent from "../../Components/Animations/parallax";
 
 type HeroSwiperItemProps = {
   backgroundImage: string;
@@ -19,16 +21,16 @@ const HeroSwiperItem: React.FC<HeroSwiperItemProps> = ({
     backgroundAttachment: "fixed",
   };
   return (
-      <div className="h-[70svh]" style={heroStyle}>
-        <div className="flex flex-col justify-center pt-[15%]  h-full container mx-auto text-white">
-          <h1 className="text-6xl font-bold tracking-[8px] w-fit">
-            {title}
-          </h1>
-          <p className="text-xl mt-8 opacity-80 w-[60%] tracking-[2px] leading-[35px]">
+    <div className="h-[80svh]" style={heroStyle}>
+      <div className="flex flex-col justify-end pb-36 pl-6  h-full container mx-auto text-white">
+        <ParallaxComponent offset={500} min={-10} max={1500}>
+          <h1 className="text-6xl font-bold tracking-[8px] w-fit">{title}</h1>
+          <p className="text-[18px] mt-8 opacity-80 w-[60%] tracking-[2px] leading-[35px]">
             {subTitle}
           </p>
-        </div>
+        </ParallaxComponent>
       </div>
+    </div>
   );
 };
 

@@ -16,6 +16,7 @@ const SwitchCard = ({
   progress,
   range,
   targetScale,
+  imgUrl
 }) => {
   const container = useRef(null);
 
@@ -43,12 +44,12 @@ const SwitchCard = ({
           <div className="flex flex-col justify-end gap-6 col-span-2">
             <h1 className="text-4xl font-bold">{title}</h1>
             <Arrow />
-            <p className="font-light">{description}</p>
+            <p className="font-light text-[16px] tracking-[1px] leading-[30px]">{description}</p>
           </div>
           <div className="w-full overflow-hidden rounded-xl col-span-3 relative">
             <motion.img
-              src={forest}
-              className="w-full rounded-xl"
+              src={imgUrl}
+              className="w-full rounded-xl aspect-[500/360] object-cover"
               style={{ scale: imageScale }}
             />
             <div className="absolute w-[90%] left-[5%] h-[90%] top-[5%] grid  grid-cols-2 gap-6">

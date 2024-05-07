@@ -7,7 +7,7 @@ type CardProps = {
   title: string;
   subtitle: string;
   content: string;
-  iconComponent: ReactNode; // Accept any React component as a prop
+  iconComponent: ReactNode; 
 };
 
 const FlipCard: React.FC<CardProps> = ({
@@ -15,7 +15,7 @@ const FlipCard: React.FC<CardProps> = ({
   title,
   subtitle,
   content,
-  iconComponent, // Destructure the iconComponent prop
+  iconComponent,
 }) => {
   const cardStyle: CSSProperties = {
     backgroundImage: `url(${backgroundImage})`,
@@ -31,7 +31,7 @@ const FlipCard: React.FC<CardProps> = ({
           style={cardStyle}
         >
           <div className="w-[100%] h-[100%] z-10 absolute bg-black/30 left-0 top-0"></div>
-          <div className="text-white z-20 mb-6 text-5xl">{iconComponent}</div>
+          <div className="text-white z-20 mb-6 text-5xl" >{iconComponent}</div>
           <p className="text-white font-bold text-3xl tracking-[4px] z-20">
             {subtitle}
           </p>
